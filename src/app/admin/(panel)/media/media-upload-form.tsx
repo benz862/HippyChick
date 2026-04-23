@@ -20,7 +20,7 @@ type BucketId = (typeof BUCKETS)[number]["id"];
 
 type Result =
   | { status: "idle" }
-  | { status: "uploading"; progress: number | null }
+  | { status: "uploading" }
   | { status: "error"; message: string }
   | {
       status: "success";
@@ -39,6 +39,8 @@ export function MediaUploadForm() {
   const [result, setResult] = useState<Result>({ status: "idle" });
 
   const pending = result.status === "uploading";
+  const success = result.status === "success" ? result : null;
+  const error = result.status === "error" ? result : null;
 
   async function handleUpload(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -47,7 +49,7 @@ export function MediaUploadForm() {
       return;
     }
 
-    setResult({ status: "uploading", progress: null });
+    setResult({ status: "uploading" });
 
     let supabase;
     try {
@@ -116,71 +118,84 @@ export function MediaUploadForm() {
   }
 
   return (
-    <form
-      onSubmit={handleUpload}
-      className="max-w-xl space-y-5 rounded-2xl border border-white/70 bg-white/85 p-6 shadow-sm"
-    >
-      <div className="space-y-2">
-        <Label htmlFor="bucket">Bucket</Label>
-        <select
-          id="bucket"
-          name="bucket"
-          required
-          value={bucket}
-          onChange={(e) => setBucket(e.target.value as BucketId)}
-          className="h-12 w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-plum)_12%,transparent)] bg-white px-4 text-sm text-[var(--color-espresso)] outline-none focus:border-[var(--color-groovy-teal)] focus:ring-2 focus:ring-[var(--color-groovy-teal)]/25"
+    <div className="space-y-5">
+      <form
+        onSubmit={handleUpload}
+        className="max-w-xl space-y-5 rounded-2xl border border-white/70 bg-white/85 p-6 shadow-sm"
+      >
+        <div className="space-y-2">
+          <Label htmlFor="bucket">Bucket</Label>
+          <select
+            id="bucket"
+            name="bucket"
+            required
+            value={bucket}
+            onChange={(e) => setBucket(e.target.value as BucketId)}
+            className="h-12 w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-plum)_12%,transparent)] bg-white px-4 text-sm text-[var(--color-espresso)] outline-none focus:border-[var(--color-groovy-teal)] focus:ring-2 focus:ring-[var(--color-groovy-teal)]/25"
+          >
+            {BUCKETS.map((b) => (
+              <option key={b.id} value={b.id}>
+                {b.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="file">File</Label>
+          <Input
+            id="file"
+            name="file"
+            type="file"
+            required
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            className="cursor-pointer py-3 file:mr-4"
+          />
+          <p className="text-xs text-[var(--color-espresso)]/55">
+            Files upload directly from your browser to Supabase — no Vercel size
+            limit. Large videos (100MB+) are fine.
+          </p>
+        </div>
+
+        {error ? (
+          <p className="text-sm text-red-700" role="alert">
+            {error.message}
+          </p>
+        ) : null}
+
+        <div className="flex flex-wrap gap-3">
+          <Button type="submit" disabled={pending}>
+            {pending ? "Uploading…" : "Upload"}
+          </Button>
+        </div>
+      </form>
+
+      {success ? (
+        <div
+          className="max-w-xl space-y-2 rounded-2xl border border-white/70 bg-[var(--color-cream)] p-5 text-sm shadow-sm"
+          role="status"
         >
-          {BUCKETS.map((b) => (
-            <option key={b.id} value={b.id}>
-              {b.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="file">File</Label>
-        <Input
-          id="file"
-          name="file"
-          type="file"
-          required
-          onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-          className="cursor-pointer py-3 file:mr-4"
-        />
-        <p className="text-xs text-[var(--color-espresso)]/55">
-          Files upload directly from your browser to Supabase — no Vercel size
-          limit. Large videos (100MB+) are fine.
-        </p>
-      </div>
-
-      {result.status === "error" ? (
-        <p className="text-sm text-red-700" role="alert">
-          {result.message}
-        </p>
-      ) : null}
-
-      {result.status === "success" ? (
-        <div className="space-y-2 rounded-xl bg-[var(--color-cream)] px-4 py-3 text-sm" role="status">
           <p className="font-medium text-[var(--color-plum)]">
-            Uploaded to {result.bucket}. {result.bucket === "portfolio-videos" || result.bucket === "portfolio-images"
+            Uploaded to {success.bucket}.{" "}
+            {success.bucket === "portfolio-videos" ||
+            success.bucket === "portfolio-images"
               ? "Fill the form below so it appears on the public UGC Portfolio."
               : "Public URL is ready to paste into Settings, a blog post, or a testimonial."}
           </p>
           <p className="text-xs text-[var(--color-espresso)]/65">
-            <span className="font-semibold">Path:</span> {result.path}
+            <span className="font-semibold">Path:</span> {success.path}
           </p>
           <div className="space-y-1">
             <Label className="text-[10px]">URL</Label>
             <div className="flex flex-wrap gap-2">
-              <Input readOnly value={result.publicUrl} className="font-mono text-xs" />
+              <Input readOnly value={success.publicUrl} className="font-mono text-xs" />
               <Button
                 type="button"
                 variant="secondary"
                 size="sm"
                 className="shrink-0"
                 onClick={() => {
-                  void navigator.clipboard.writeText(result.publicUrl);
+                  void navigator.clipboard.writeText(success.publicUrl);
                   toast.message("Copied to clipboard");
                 }}
               >
@@ -188,22 +203,18 @@ export function MediaUploadForm() {
               </Button>
             </div>
           </div>
-
-          {result.bucket === "portfolio-videos" || result.bucket === "portfolio-images" ? (
-            <AddToPortfolioForm
-              key={`${result.bucket}-${result.publicUrl}`}
-              mediaUrl={result.publicUrl}
-              sourceBucket={result.bucket}
-            />
-          ) : null}
         </div>
       ) : null}
 
-      <div className="flex flex-wrap gap-3">
-        <Button type="submit" disabled={pending}>
-          {pending ? "Uploading…" : "Upload"}
-        </Button>
-      </div>
-    </form>
+      {success &&
+      (success.bucket === "portfolio-videos" ||
+        success.bucket === "portfolio-images") ? (
+        <AddToPortfolioForm
+          key={`${success.bucket}-${success.publicUrl}`}
+          mediaUrl={success.publicUrl}
+          sourceBucket={success.bucket}
+        />
+      ) : null}
+    </div>
   );
 }
