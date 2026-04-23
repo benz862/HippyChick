@@ -1,5 +1,8 @@
 export const SITE_NAME = "Hippy Chick Life";
 
+/** Legal entity name — used in copyright line, Terms, Privacy, and any legal context. */
+export const SITE_LEGAL_NAME = "Hippy Chick Life LLC";
+
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/journey", label: "Our Journey" },

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiteLogo } from "@/components/layout/site-logo";
-import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
+import { NAV_LINKS, SITE_LEGAL_NAME } from "@/lib/constants";
 import { getContactEmail } from "@/lib/data/site-settings";
 
 const FOOTER_LINKS = [
@@ -90,7 +90,7 @@ export async function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/50 py-6 text-center text-xs text-[var(--color-espresso)]/55">
-        © {new Date().getFullYear()} {SITE_NAME}. Crafted with care.
+        © {new Date().getFullYear()} {SITE_LEGAL_NAME}. All rights reserved.
       </div>
     </footer>
   );
