@@ -35,6 +35,9 @@ const buttonVariants = cva(
 export type ButtonProps = ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     href?: string;
+    /** When `href` is set, passed through to Next.js `Link`. */
+    target?: ComponentProps<typeof Link>["target"];
+    rel?: ComponentProps<typeof Link>["rel"];
   };
 
 export function Button({
@@ -42,14 +45,18 @@ export function Button({
   variant,
   size,
   href,
+  target,
+  rel,
   children,
   ...props
 }: ButtonProps) {
   const classes = cn(buttonVariants({ variant, size }), className);
 
   if (href) {
+    const linkRel =
+      rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} target={target} rel={linkRel}>
         {children}
       </Link>
     );

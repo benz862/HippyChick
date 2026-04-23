@@ -214,7 +214,7 @@ export async function createPortfolioFromUpload(
     status: "success",
     message: isPublished
       ? "UGC Portfolio piece published. It should appear on the site shortly."
-      : "Saved as a draft (unpublished). Turn on publish in Supabase or edit later when we add editing.",
+      : "Saved as a draft (unpublished). Open UGC Portfolio manager to publish or edit.",
     slug,
   };
 }
