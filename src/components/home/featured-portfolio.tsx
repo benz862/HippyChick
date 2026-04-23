@@ -17,13 +17,13 @@ export function FeaturedPortfolio({ items }: FeaturedPortfolioProps) {
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="flex flex-col justify-between gap-8 pb-12 md:flex-row md:items-end">
           <Reveal className="max-w-xl space-y-4">
-            <Badge tone="teal">Portfolio</Badge>
+            <Badge tone="teal">UGC Portfolio</Badge>
             <h2 className="font-serif text-3xl text-[var(--color-plum)] sm:text-4xl">
-              Featured work with room to breathe
+              Real stories. Real creators. Real results.
             </h2>
             <p className="text-[var(--color-espresso)]/75">
-              A curated look at collaborations, campaigns, and creative that
-              blends warmth with commercial polish.
+              Handpicked UGC videos, product demos, and lifestyle content from
+              brand partners who trust a mature voice to sell without selling.
             </p>
           </Reveal>
           <Reveal delay={0.06}>
@@ -31,7 +31,7 @@ export function FeaturedPortfolio({ items }: FeaturedPortfolioProps) {
               href="/portfolio"
               className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-plum)] hover:text-[var(--color-magenta)]"
             >
-              View full portfolio
+              See all UGC work
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Reveal>
@@ -39,7 +39,8 @@ export function FeaturedPortfolio({ items }: FeaturedPortfolioProps) {
 
         {items.length === 0 ? (
           <p className="rounded-3xl border border-dashed border-[var(--color-plum)]/20 bg-white/60 px-6 py-16 text-center text-sm text-[var(--color-espresso)]/65">
-            Portfolio pieces will appear here once published in Supabase.
+            UGC videos and brand collabs will appear here as they’re published
+            in Supabase.
           </p>
         ) : (
           <div className="grid gap-8 md:grid-cols-2">
