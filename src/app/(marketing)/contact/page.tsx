@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getContactEmail } from "@/lib/data/site-settings";
 import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
@@ -6,7 +7,9 @@ export const metadata: Metadata = {
   description: "Reach Hippy Chick Life for collaborations, campaigns, and partnerships.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contactEmail = await getContactEmail();
+
   return (
     <div className="mx-auto max-w-3xl px-5 py-16 md:px-8 md:py-24">
       <div className="mb-12 space-y-4 text-center">
@@ -19,6 +22,15 @@ export default function ContactPage() {
         <p className="text-sm leading-relaxed text-[var(--color-espresso)]/75">
           Share a snapshot of your goals, timeline, and creative needs. We read
           every message with care.
+        </p>
+        <p className="text-sm text-[var(--color-espresso)]/75">
+          Prefer email?{" "}
+          <a
+            href={`mailto:${contactEmail}`}
+            className="font-semibold text-[var(--color-plum)] underline decoration-[var(--color-magenta)] decoration-2 underline-offset-4 hover:text-[var(--color-magenta)]"
+          >
+            {contactEmail}
+          </a>
         </p>
       </div>
       <ContactForm />

@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
+import { renderContactEmail, sendNotificationEmail } from "@/lib/email";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Name is required"),
@@ -60,6 +61,18 @@ export async function submitContact(
 
   if (error) {
     return { status: "error", message: error.message };
+  }
+
+  const email = renderContactEmail(parsed.data);
+  const delivery = await sendNotificationEmail({
+    subject: email.subject,
+    text: email.text,
+    html: email.html,
+    replyTo: parsed.data.email,
+  });
+  if (!delivery.ok) {
+    // Don't fail the user — the inquiry is safely stored in Supabase.
+    console.error("[contact] email notification failed:", delivery.error);
   }
 
   return {

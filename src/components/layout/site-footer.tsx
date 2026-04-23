@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
+import { getContactEmail } from "@/lib/data/site-settings";
 
 const FOOTER_LINKS = [
   ...NAV_LINKS,
@@ -9,7 +10,8 @@ const FOOTER_LINKS = [
   { href: "/terms", label: "Terms" },
 ] as const;
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const contactEmail = await getContactEmail();
   return (
     <footer className="mt-24 border-t border-white/60 bg-[color-mix(in_srgb,var(--color-sand)_55%,white)]">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-5 py-16 md:flex-row md:items-start md:justify-between md:px-8">
@@ -57,6 +59,14 @@ export function SiteFooter() {
                 <Link className="hover:text-[var(--color-groovy-pink)]" href="/media-kit">
                   Media Kit
                 </Link>
+              </li>
+              <li>
+                <a
+                  className="hover:text-[var(--color-groovy-pink)]"
+                  href={`mailto:${contactEmail}`}
+                >
+                  {contactEmail}
+                </a>
               </li>
             </ul>
           </div>

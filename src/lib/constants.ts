@@ -24,3 +24,9 @@ export type PortfolioCategory = (typeof PORTFOLIO_CATEGORIES)[number];
 
 /** Bundled hero art; override anytime via `site_settings.hero_image_url` in Supabase. */
 export const DEFAULT_HERO_IMAGE = "/hero.jpg";
+
+/** Public-facing contact email (shown in footer, Contact page mailto). */
+export const DEFAULT_CONTACT_EMAIL = "contact@hippychicklife.com";
+
+/** Inbox that receives contact-form submissions. Override with NOTIFY_EMAIL env var. */
+export const DEFAULT_NOTIFY_EMAIL = "info@hippychicklife.com";
