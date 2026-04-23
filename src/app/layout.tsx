@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Fraunces, Shrikhand } from "next/font/google";
 import { Toaster } from "sonner";
+import { getMetadataBase } from "@/lib/site-url";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -22,10 +23,13 @@ const shrikhand = Shrikhand({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const metadataBase = getMetadataBase();
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
+  ...(metadataBase ? { metadataBase } : {}),
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
   title: {
     default: "Hippy Chick Life — Lifestyle & UGC Portfolio",
     template: "%s — Hippy Chick Life",
