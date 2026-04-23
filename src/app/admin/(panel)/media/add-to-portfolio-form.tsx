@@ -21,13 +21,16 @@ export function AddToPortfolioForm({ mediaUrl, sourceBucket }: Props) {
   const isVideo = sourceBucket === "portfolio-videos";
 
   return (
-    <div className="mt-4 rounded-2xl border border-[var(--color-groovy-teal)]/25 bg-white/95 p-5 shadow-sm">
+    <div className="mt-4 rounded-2xl border-2 border-[var(--color-groovy-pink)]/45 bg-[color-mix(in_srgb,var(--color-groovy-pink)_4%,white)] p-5 shadow-sm">
+      <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[var(--color-groovy-plum)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+        Step 3 — required
+      </div>
       <h3 className="font-serif text-lg text-[var(--color-plum)]">
         Add this file to your UGC Portfolio
       </h3>
-      <p className="mt-1 text-xs text-[var(--color-espresso)]/70">
-        Upload only puts the file in storage. This step creates the database row so it appears on
-        the public UGC Portfolio.
+      <p className="mt-1 text-xs text-[var(--color-espresso)]/75">
+        Without this step the file is only in storage. Filling this in is what
+        puts the piece on the public UGC Portfolio page.
       </p>
 
       <form action={formAction} className="mt-4 space-y-4">

@@ -1,12 +1,24 @@
-export default function AdminSettingsPage() {
-  return (
-    <div className="space-y-3">
-      <h1 className="font-serif text-3xl text-[var(--color-plum)]">Site settings</h1>
-      <p className="max-w-2xl text-sm text-[var(--color-espresso)]/70">
-        Store hero imagery, social links, contact email, and media kit URLs in the{" "}
-        <code className="rounded bg-white/70 px-1 text-xs">site_settings</code> table as
-        JSON values keyed for easy retrieval on the marketing site.
-      </p>
-    </div>
-  );
+import { createClient } from "@/lib/supabase/server";
+import { SETTINGS_KEYS } from "./keys";
+import { SettingsForm } from "./settings-form";
+
+export const dynamic = "force-dynamic";
+
+export default async function AdminSettingsPage() {
+  const supabase = await createClient();
+  const current: Record<string, string> = {};
+
+  if (supabase) {
+    const { data } = await supabase
+      .from("site_settings")
+      .select("key,value")
+      .in("key", [...SETTINGS_KEYS]);
+    for (const row of data ?? []) {
+      const val = row.value;
+      if (typeof val === "string") current[row.key] = val;
+      else if (val != null) current[row.key] = JSON.stringify(val);
+    }
+  }
+
+  return <SettingsForm current={current} configured={!!supabase} />;
 }
