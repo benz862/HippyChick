@@ -7,7 +7,7 @@ import { getPublishedPortfolioItems } from "@/lib/data/portfolio";
 export const metadata: Metadata = {
   title: "UGC Portfolio",
   description:
-    "Browse UGC, demos, lifestyle, photography, and brand storytelling from Hippy Chick Life.",
+    "Browse UGC, demos, lifestyle, publishing, and brand storytelling from Hippy Chick Life.",
 };
 
 export const revalidate = 120;

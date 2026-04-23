@@ -13,7 +13,7 @@ export const PORTFOLIO_CATEGORIES = [
   "UGC Video",
   "Product Demo",
   "Lifestyle Content",
-  "Photography",
+  "Publishing",
   "Social Clips",
   "Brand Concepts",
   "Behind the Scenes",

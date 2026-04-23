@@ -21,7 +21,7 @@ export function StoryIntro() {
           </p>
           <p>
             We pair decades of business fluency with modern storytelling—UGC,
-            photography, demos, and voice-led narratives that feel human,
+            publishing, demos, and voice-led narratives that feel human,
             elevated, and ready for the brands who value authenticity.
           </p>
         </Reveal>

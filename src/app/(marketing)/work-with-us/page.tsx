@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const services = [
   "UGC Videos",
   "Product Demos",
-  "Lifestyle Photography",
+  "Publishing (via SkillBinder)",
   "Voice-led Storytelling",
   "Social Creative",
   "Mature Audience Content",
@@ -30,7 +30,7 @@ const steps = [
   },
   {
     title: "Production",
-    body: "Filming, photography, and voice work with calm energy and polished execution.",
+    body: "Filming, editorial, and voice work with calm energy and polished execution.",
   },
   {
     title: "Delivery & iteration",

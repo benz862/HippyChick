@@ -1,9 +1,27 @@
-import { Camera, Clapperboard, Mic2, Palette, Sparkles, Users } from "lucide-react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  Clapperboard,
+  Mic2,
+  Palette,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const cards = [
+type CapabilityCard = {
+  title: string;
+  copy: string;
+  icon: typeof Clapperboard;
+  accent: string;
+  href?: string;
+  external?: boolean;
+  hrefLabel?: string;
+};
+
+const cards: readonly CapabilityCard[] = [
   {
     title: "UGC Videos",
     copy: "Natural, confident on-camera delivery that feels like a friend—not a script.",
@@ -23,10 +41,13 @@ const cards = [
     accent: "from-[var(--color-purple)]/22 to-transparent",
   },
   {
-    title: "Photography",
-    copy: "Still imagery with mood, palette discipline, and brand-safe polish.",
-    icon: Camera,
+    title: "Publishing",
+    copy: "Books and long-form storytelling from our sister brand SkillBinder—decades of craft, beautifully bound.",
+    icon: BookOpen,
     accent: "from-[var(--color-gold)]/28 to-transparent",
+    href: "https://publishing.skillbinder.com",
+    external: true,
+    hrefLabel: "Visit SkillBinder Publishing",
   },
   {
     title: "Storytelling Content",
@@ -59,22 +80,53 @@ export function WhatWeCreate() {
       </Reveal>
 
       <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-        {cards.map((card, i) => (
-          <Reveal key={card.title} delay={i * 0.04}>
-            <Card className="relative h-full overflow-hidden p-7">
+        {cards.map((card, i) => {
+          const Icon = card.icon;
+          const body = (
+            <Card
+              className={`relative h-full overflow-hidden p-7 ${
+                card.href
+                  ? "transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:-translate-y-0.5 focus-visible:shadow-lg"
+                  : ""
+              }`}
+            >
               <div
                 className={`pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gradient-to-br ${card.accent}`}
               />
-              <card.icon className="relative mb-4 h-8 w-8 text-[var(--color-plum)]" />
+              <Icon className="relative mb-4 h-8 w-8 text-[var(--color-plum)]" />
               <h3 className="relative font-serif text-xl text-[var(--color-plum)]">
                 {card.title}
               </h3>
               <p className="relative mt-3 text-sm leading-relaxed text-[var(--color-espresso)]/75">
                 {card.copy}
               </p>
+              {card.href ? (
+                <span className="relative mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-plum)]">
+                  {card.hrefLabel ?? "Learn more"}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
+              ) : null}
             </Card>
-          </Reveal>
-        ))}
+          );
+
+          return (
+            <Reveal key={card.title} delay={i * 0.04}>
+              {card.href ? (
+                <a
+                  href={card.href}
+                  target={card.external ? "_blank" : undefined}
+                  rel={card.external ? "noopener noreferrer" : undefined}
+                  className="block h-full rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-magenta)]/60 focus-visible:ring-offset-2"
+                  aria-label={`${card.title} — ${card.hrefLabel ?? "Learn more"}`}
+                >
+                  {body}
+                </a>
+              ) : (
+                body
+              )}
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );
