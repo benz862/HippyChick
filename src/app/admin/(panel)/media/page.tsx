@@ -11,7 +11,7 @@ export default function AdminMediaPage() {
           Upload sends files to <strong>Supabase Storage</strong> only. For work to appear on the
           public site, use buckets <code className="rounded bg-white/70 px-1 text-xs">portfolio-videos</code>{" "}
           or <code className="rounded bg-white/70 px-1 text-xs">portfolio-images</code>, then complete
-          the <strong>Add to portfolio</strong> form that appears after a successful upload—that
+          the <strong>Add to UGC Portfolio</strong> form that appears after a successful upload—that
           creates the <code className="rounded bg-white/70 px-1 text-xs">portfolio_items</code> row.
           You need <code className="rounded bg-white/70 px-1 text-xs">is_admin = true</code> on your{" "}
           <code className="rounded bg-white/70 px-1 text-xs">profiles</code> row.

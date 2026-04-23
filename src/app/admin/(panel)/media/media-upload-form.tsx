@@ -9,8 +9,8 @@ import { AddToPortfolioForm } from "./add-to-portfolio-form";
 import { uploadStorageObject, type UploadState } from "./actions";
 
 const BUCKETS = [
-  { id: "portfolio-images", label: "Portfolio images (public)" },
-  { id: "portfolio-videos", label: "Portfolio videos (public)" },
+  { id: "portfolio-images", label: "UGC Portfolio images (public)" },
+  { id: "portfolio-videos", label: "UGC Portfolio videos (public)" },
   { id: "blog-images", label: "Blog images (public)" },
   { id: "testimonials", label: "Testimonials (public)" },
   { id: "brand-assets", label: "Brand assets (private — signed URL after upload)" },

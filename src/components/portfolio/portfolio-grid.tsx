@@ -12,7 +12,7 @@ export function PortfolioGrid({ items }: Props) {
   if (items.length === 0) {
     return (
       <p className="rounded-3xl border border-dashed border-[var(--color-plum)]/20 bg-white/60 px-6 py-16 text-center text-sm text-[var(--color-espresso)]/65">
-        No published portfolio items match this filter yet.
+        No published UGC Portfolio items match this filter yet.
       </p>
     );
   }

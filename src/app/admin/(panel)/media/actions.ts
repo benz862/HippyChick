@@ -118,8 +118,8 @@ export async function uploadStorageObject(
     status: "success",
     message:
       bucket === "portfolio-videos" || bucket === "portfolio-images"
-        ? `Uploaded to ${bucket}. Add portfolio details below so this appears on the site.`
-        : `Uploaded to ${bucket}. Public URL is ready to paste into portfolio or blog fields.`,
+        ? `Uploaded to ${bucket}. Add UGC Portfolio details below so this appears on the site.`
+        : `Uploaded to ${bucket}. Public URL is ready to paste into UGC Portfolio or blog fields.`,
     publicUrl: pub.publicUrl,
     path: data.path,
     bucket,
@@ -166,7 +166,7 @@ export async function createPortfolioFromUpload(
     return { status: "error", message: "Missing media URL. Upload the file again." };
   }
   if (sourceBucket !== "portfolio-videos" && sourceBucket !== "portfolio-images") {
-    return { status: "error", message: "Portfolio entries can only be created from portfolio-videos or portfolio-images uploads." };
+    return { status: "error", message: "UGC Portfolio entries can only be created from portfolio-videos or portfolio-images uploads." };
   }
 
   const supabase = await createClient();
@@ -213,7 +213,7 @@ export async function createPortfolioFromUpload(
   return {
     status: "success",
     message: isPublished
-      ? "Portfolio piece published. It should appear on the site shortly."
+      ? "UGC Portfolio piece published. It should appear on the site shortly."
       : "Saved as a draft (unpublished). Turn on publish in Supabase or edit later when we add editing.",
     slug,
   };

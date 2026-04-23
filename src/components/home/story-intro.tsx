@@ -15,9 +15,9 @@ export function StoryIntro() {
         </Reveal>
         <Reveal delay={0.08} className="space-y-5 text-base leading-relaxed text-[var(--color-espresso)]/80">
           <p>
-            Hippy Chick Life is a portfolio-first lifestyle brand for creators
-            who are writing a bold new chapter: colorful, grounded, and
-            unapologetically current.
+            Hippy Chick Life is a UGC-first lifestyle brand for creators who are
+            writing a bold new chapter: colorful, grounded, and unapologetically
+            current.
           </p>
           <p>
             We pair decades of business fluency with modern storytelling—UGC,

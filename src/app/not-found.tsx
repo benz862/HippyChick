@@ -42,7 +42,7 @@ export default function NotFound() {
               size="lg"
               className="min-w-[11rem] font-bold uppercase tracking-[0.12em] shadow-lg"
             >
-              See portfolio
+              See UGC Portfolio
             </Button>
           </div>
 

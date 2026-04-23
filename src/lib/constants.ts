@@ -3,7 +3,7 @@ export const SITE_NAME = "Hippy Chick Life";
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/journey", label: "Our Journey" },
-  { href: "/portfolio", label: "Portfolio" },
+  { href: "/portfolio", label: "UGC Portfolio" },
   { href: "/work-with-us", label: "Work With Us" },
   { href: "/journal", label: "Journal" },
   { href: "/contact", label: "Contact" },

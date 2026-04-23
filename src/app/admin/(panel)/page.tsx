@@ -24,7 +24,7 @@ export default async function AdminDashboardPage() {
   ]);
 
   const stats = [
-    { label: "Portfolio items", value: portfolio.count ?? 0 },
+    { label: "UGC Portfolio items", value: portfolio.count ?? 0 },
     { label: "Blog posts", value: posts.count ?? 0 },
     { label: "Testimonials", value: testimonials.count ?? 0 },
     { label: "Contact leads", value: leads.count ?? 0 },

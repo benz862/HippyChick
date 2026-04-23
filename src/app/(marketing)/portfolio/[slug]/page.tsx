@@ -42,7 +42,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
           className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-plum)]/70 hover:text-[var(--color-plum)]"
         >
           <ArrowLeft className="h-4 w-4" />
-          Portfolio
+          UGC Portfolio
         </Link>
       </div>
 
@@ -150,7 +150,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
           Inquire about this style of work
         </Button>
         <Button href="/portfolio" variant="secondary" size="lg">
-          Back to portfolio
+          Back to UGC Portfolio
         </Button>
       </div>
     </article>

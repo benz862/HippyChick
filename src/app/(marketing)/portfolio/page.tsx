@@ -5,7 +5,7 @@ import { PortfolioGrid } from "@/components/portfolio/portfolio-grid";
 import { getPublishedPortfolioItems } from "@/lib/data/portfolio";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "UGC Portfolio",
   description:
     "Browse UGC, demos, lifestyle, photography, and brand storytelling from Hippy Chick Life.",
 };
@@ -29,14 +29,14 @@ export default async function PortfolioPage({
     <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
       <div className="mb-12 max-w-2xl space-y-4">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-plum)]/60">
-          Portfolio
+          UGC Portfolio
         </p>
         <h1 className="font-serif text-4xl text-[var(--color-plum)] sm:text-5xl">
-          Work that feels lived-in and launch-ready
+          UGC that feels lived-in and launch-ready
         </h1>
         <p className="text-sm leading-relaxed text-[var(--color-espresso)]/75">
-          Filter by format, preview with calm overlays, and open any project for
-          full context—media, deliverables, and collaboration notes.
+          Filter by format, preview with calm overlays, and open any UGC project
+          for full context—media, deliverables, and collaboration notes.
         </p>
       </div>
 

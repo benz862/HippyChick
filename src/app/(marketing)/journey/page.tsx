@@ -69,7 +69,7 @@ export default function JourneyPage() {
 
       <Reveal className="mt-16 flex flex-wrap justify-center gap-4">
         <Button href="/portfolio" size="lg">
-          Explore portfolio
+          Explore UGC Portfolio
         </Button>
         <Button href="/contact" variant="secondary" size="lg">
           Start a conversation

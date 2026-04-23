@@ -23,11 +23,11 @@ export function AddToPortfolioForm({ mediaUrl, sourceBucket }: Props) {
   return (
     <div className="mt-4 rounded-2xl border border-[var(--color-groovy-teal)]/25 bg-white/95 p-5 shadow-sm">
       <h3 className="font-serif text-lg text-[var(--color-plum)]">
-        Add this file to your portfolio
+        Add this file to your UGC Portfolio
       </h3>
       <p className="mt-1 text-xs text-[var(--color-espresso)]/70">
         Upload only puts the file in storage. This step creates the database row so it appears on
-        the public portfolio.
+        the public UGC Portfolio.
       </p>
 
       <form action={formAction} className="mt-4 space-y-4">
@@ -91,7 +91,7 @@ export function AddToPortfolioForm({ mediaUrl, sourceBucket }: Props) {
             className="h-12 w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-plum)_12%,transparent)] bg-white px-4 text-sm"
             defaultValue="true"
           >
-            <option value="true">Published — show on public portfolio</option>
+            <option value="true">Published — show on public UGC Portfolio</option>
             <option value="false">Draft — hide until you publish in Supabase</option>
           </select>
         </div>
@@ -122,7 +122,7 @@ export function AddToPortfolioForm({ mediaUrl, sourceBucket }: Props) {
         ) : null}
 
         <Button type="submit" disabled={pending}>
-          {pending ? "Saving…" : "Create portfolio piece"}
+          {pending ? "Saving…" : "Create UGC Portfolio piece"}
         </Button>
       </form>
     </div>

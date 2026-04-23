@@ -30,7 +30,7 @@ export function CtaBanner() {
               size="lg"
               className="text-white ring-1 ring-white/40 hover:bg-white/10"
             >
-              Browse portfolio
+              Browse UGC Portfolio
             </Button>
           </div>
         </div>
