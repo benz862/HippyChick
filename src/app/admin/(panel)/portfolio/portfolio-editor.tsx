@@ -75,6 +75,10 @@ export function PortfolioEditor({ mode, item }: Props) {
               defaultValue={item?.category ?? PORTFOLIO_CATEGORIES[0]}
               className={selectClass}
             >
+              {item?.category &&
+              !(PORTFOLIO_CATEGORIES as readonly string[]).includes(item.category) ? (
+                <option value={item.category}>{item.category} (update to save)</option>
+              ) : null}
               {PORTFOLIO_CATEGORIES.map((c) => (
                 <option key={c} value={c}>
                   {c}

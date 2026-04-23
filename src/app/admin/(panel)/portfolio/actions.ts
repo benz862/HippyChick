@@ -21,7 +21,12 @@ function optText(max: number) {
 const portfolioFields = z.object({
   title: z.string().trim().min(1, "Title is required"),
   slug: z.string().trim().max(120),
-  category: z.string().refine((s) => categories.includes(s), "Pick a valid category"),
+  category: z
+    .string()
+    .refine(
+      (s) => categories.includes(s) || s === "Photography",
+      "Pick a valid category",
+    ),
   subcategory: optText(200),
   media_type: z.enum(["image", "video"]),
   excerpt: optText(2000),
@@ -170,6 +175,8 @@ export async function savePortfolioItem(
   }
 
   const d = parsed.data;
+  const category =
+    d.category === "Photography" ? "Publishing" : d.category;
   const slugInput = emptyToNull(d.slug);
   const baseSlug = slugify(slugInput || d.title);
 
@@ -178,7 +185,7 @@ export async function savePortfolioItem(
     const row = {
       title: d.title,
       slug,
-      category: d.category,
+      category,
       subcategory: d.subcategory,
       media_type: d.media_type,
       excerpt: d.excerpt,
@@ -215,7 +222,7 @@ export async function savePortfolioItem(
     const row = {
       title: d.title,
       slug,
-      category: d.category,
+      category,
       subcategory: d.subcategory,
       media_type: d.media_type,
       excerpt: d.excerpt,
